@@ -28,6 +28,8 @@ public class FeherjeFakt {
             BufferedReader okos = new BufferedReader(buta);
             String ideiglenes = new String();
             String[][] hetes = new String[200][7];
+            String[][] betuk = new String[200][2];
+            Integer[][] szamok = new Integer[200][5];
             
             for (int i = 0; i < 200; i++) {
                 if (ideiglenes == null) {
@@ -43,12 +45,34 @@ public class FeherjeFakt {
 
                 }
             }
+            
+            for (int i = 0; i < hetes.length; i++) {
+                for (int j = 0; j < 2; j++) {
+                    if (hetes[i][j]==null) {
+                        break;
+                    }
+                    betuk[i][j]=hetes[i][j];
+                    System.out.println(betuk[i][j]);
+                }
+            }
+            
+            for (int i = 0; i < hetes.length; i++) {
+                for (int j = 2; j < 5; j++) {
+                    if (hetes[i][j] == null) {
+                    break;
+                }
+                    szamok[i][j]=Integer.parseInt(hetes[i][j]);
+                    System.out.println(szamok[i][j]);
+                }
+            }
+            
 
         } catch (FileNotFoundException ex) {
             System.out.println("Nem találhetó a file!");
         } catch (IOException ex) {
             System.out.println("Olvasási hiba!");
         }
+        
 
     
     }
