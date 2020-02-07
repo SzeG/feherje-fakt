@@ -27,9 +27,9 @@ public class FeherjeFakt {
             FileReader buta = new FileReader("aminosav.txt");
             BufferedReader okos = new BufferedReader(buta);
             String ideiglenes = new String();
-            String[][] hetes = new String[200][7];
-            String[][] betuk = new String[200][2];
-            Integer[][] szamok = new Integer[200][5];
+            String[][] hetes = new String[100][7];
+            String[][] betuk = new String[100][2];
+            Integer[][] szamok = new Integer[100][5];
             
             for (int i = 0; i < 200; i++) {
                 if (ideiglenes == null) {
@@ -65,7 +65,14 @@ public class FeherjeFakt {
                     //System.out.println(szamok[i][j]);
                 }
             }
-
+            //--Második feladat--
+            System.out.println("--Második feladat--");
+            for (int i = 0; i < szamok.length; i++) {
+                if (szamok[i][0]==null) {
+                    break;
+                }
+                System.out.println(12+"*"+szamok[i][0]+"+"+1+"*"+szamok[i][1]+"+"+16+"*"+szamok[i][2]+"+"+14+"*"+szamok[i][3]+"+"+32+"*"+szamok[i][4]+"="+((12*szamok[i][0])+(1*szamok[i][1])+(16*szamok[i][2])+(14*szamok[i][3])+(32*szamok[i][4])));
+            }
         } catch (FileNotFoundException ex) {
             System.out.println("Nem találhetó a file!");
         } catch (IOException ex) {
