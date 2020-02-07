@@ -52,20 +52,19 @@ public class FeherjeFakt {
                         break;
                     }
                     betuk[i][j]=hetes[i][j];
-                    System.out.println(betuk[i][j]);
+                    //System.out.println(betuk[i][j]);
                 }
             }
             
             for (int i = 0; i < hetes.length; i++) {
-                for (int j = 2; j < 5; j++) {
+                for (int j = 2; j < 7; j++) {
                     if (hetes[i][j] == null) {
                     break;
                 }
-                    szamok[i][j]=Integer.parseInt(hetes[i][j]);
-                    System.out.println(szamok[i][j]);
+                    szamok[i][j-2]=Integer.parseInt(hetes[i][j]);
+                    //System.out.println(szamok[i][j]);
                 }
             }
-            
 
         } catch (FileNotFoundException ex) {
             System.out.println("Nem találhetó a file!");
