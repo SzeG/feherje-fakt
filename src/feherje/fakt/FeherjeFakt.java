@@ -68,6 +68,7 @@ public class FeherjeFakt {
                 }
             }
             //--Második feladat--
+            //Rendezetlen mol. töm. értékek tömbje
             Integer[] moltom = new Integer[100];
             for (int i = 0; i < szamok.length; i++) {
                 if (szamok[i][0] == null) {
@@ -77,27 +78,43 @@ public class FeherjeFakt {
             }
             //--Harmadik feladat--
             System.out.println("--Harmadik feladat--");
+            //Rendezett mol. töm. értékek tömbje (lesz)
             Integer[][] rendMolTom = new Integer[100][2];
+            //Az adott (i) cikluskör legnagyobb mol. töm. értéke kerül bele
             Integer legnagyobb = 0;
+            //A rendMolTom tömbböt mindig egy sorral előrébb állítja
             Integer x = 0;
+            //Ez tekeri többször át a moltom tömböt
             for (int j = 0; j < 100; j++) {
+                //Ez nézi át a moltom tömb takjait körönként
                 for (int i = 0; i < moltom.length; i++) {
+                    //Mivel a moltom 100 tagú, de kb. 20 adat van benne, ha null-ot talál, továbbugrik a következő adatra
                     if (moltom[i]==null) {
                     i=i++;
                     }else{
+                      
                         if (legnagyobb <= moltom[i]) {
+                            //ha a legnagyobb változónál nagyobbat talál, felülírja
                             legnagyobb = moltom[i];
                         } else {
+                            //Szépen sorba beleteszi a rendezett tömbbe, első helyre az i-t írja, hogy később is vissza tudjam keresni, másodikra az értéket
                             rendMolTom[x][1] = moltom[i];
                             rendMolTom[x][0] = i;
+                            //Mikor végzett, az eredeti moltom tömbeben az adott (éppen legnagyobb) tagot nullra állítja - ezzel szinte kitörli a tömbből
                             moltom[i] = null;
+                            //Visszaállítja a legnagyobb változót alaphelyzetbe
                             legnagyobb = 0;
-                            x = x++;
+                            //A rendMolTom következő sorára ugrik
+                            x = x+1;
                         }
                     }
 
                 }
             }
+            //PROBLÉMA:
+            // 1. nem megfelelően működik a program, nem állítja sorrendbe a tömbadatokat
+            // 2. mit kezdjek a sok null értékkel a tömbjeimben, hogyan tudom esetleg úgy létrehozni, kezelni őket, hogy ne legyen benne ennyi fölösleges null?
+            //Próba kiírás
             for (int i = 0; i < rendMolTom.length; i++) {
                 System.out.println(rendMolTom[i][0]+" "+rendMolTom[i][1]);
             }
