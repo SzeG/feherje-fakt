@@ -1,0 +1,7 @@
+Az aminosav.txt azért tartalmaz 140 sort, mivel egy aminosav 7 sorban van leírva és összesen 20 létezik. Ez egyébként le is van írva a
+feladat elején, ott egy táblázat, amely ezeket az aminosavakat tartalmazza. Ezért tökéletesen fölösleges a molekulatömegek tárolására
+20-nál nagyobb tömböt használmni.
+A tömb rendezésére nem kell egy újabb tömböt létrehozni, elégséges az eredetit sorba rakni olyan alapon, hogy összehasonlítos a 
+szomszédos elemeket és cseréled, ha rossz sorrendben állnak. Értelemszerűen a molekulatümegek cseréjekor cserélni kell a szöveges
+adatkat is, hogy ne sérüljenek az összetartozó adatok. 
+Null értékek sehol nem kellene keletkezzenek.
