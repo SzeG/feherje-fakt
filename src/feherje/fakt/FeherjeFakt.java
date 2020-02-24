@@ -29,18 +29,12 @@ public class FeherjeFakt {
             FileReader buta = new FileReader("aminosav.txt");
             BufferedReader okos = new BufferedReader(buta);
             String ideiglenes = new String();
-            String[][] hetes = new String[100][7];
-            String[][] betuk = new String[100][2];
-            Integer[][] szamok = new Integer[100][5];
+            String[][] hetes = new String[20][7];
+            String[][] betuk = new String[20][2];
+            Integer[][] szamok = new Integer[20][5];
 
-            for (int i = 0; i < 200; i++) {
-                if (ideiglenes == null) {
-                    break;
-                }
+            for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 7; j++) {
-                    if (ideiglenes == null) {
-                        break;
-                    }
                     ideiglenes = okos.readLine();
 
                     hetes[i][j] = ideiglenes;
@@ -69,60 +63,48 @@ public class FeherjeFakt {
             }
             //--Második feladat--
             //Rendezetlen mol. töm. értékek tömbje
-            Integer[] moltom = new Integer[100];
+            Integer[][] moltom = new Integer[20][2];
             for (int i = 0; i < szamok.length; i++) {
                 if (szamok[i][0] == null) {
                     break;
                 }
-                moltom[i] = ((12 * szamok[i][0]) + (1 * szamok[i][1]) + (16 * szamok[i][2]) + (14 * szamok[i][3]) + (32 * szamok[i][4]));
+                moltom[i][0]=i;
+                moltom[i][1] = ((12 * szamok[i][0]) + (1 * szamok[i][1]) + (16 * szamok[i][2]) + (14 * szamok[i][3]) + (32 * szamok[i][4]));
             }
+
             //--Harmadik feladat--
             System.out.println("--Harmadik feladat--");
-            //Rendezett mol. töm. értékek tömbje (lesz)
-            Integer[][] rendMolTom = new Integer[100][2];
-            //Az adott (i) cikluskör legnagyobb mol. töm. értéke kerül bele
-            Integer legnagyobb = 0;
-            //A rendMolTom tömbböt mindig egy sorral előrébb állítja
-            Integer x = 0;
-            //Ez tekeri többször át a moltom tömböt
-            for (int j = 0; j < 100; j++) {
-                //Ez nézi át a moltom tömb takjait körönként
-                for (int i = 0; i < moltom.length; i++) {
-                    //Mivel a moltom 100 tagú, de kb. 20 adat van benne, ha null-ot talál, továbbugrik a következő adatra
-                    if (moltom[i]==null) {
-                    i=i++;
-                    }else{
-                      
-                        if (legnagyobb <= moltom[i]) {
-                            //ha a legnagyobb változónál nagyobbat talál, felülírja
-                            legnagyobb = moltom[i];
-                        } else {
-                            //Szépen sorba beleteszi a rendezett tömbbe, első helyre az i-t írja, hogy később is vissza tudjam keresni, másodikra az értéket
-                            rendMolTom[x][1] = moltom[i];
-                            rendMolTom[x][0] = i;
-                            //Mikor végzett, az eredeti moltom tömbeben az adott (éppen legnagyobb) tagot nullra állítja - ezzel szinte kitörli a tömbből
-                            moltom[i] = null;
-                            //Visszaállítja a legnagyobb változót alaphelyzetbe
-                            legnagyobb = 0;
-                            //A rendMolTom következő sorára ugrik
-                            x = x+1;
-                        }
+            Integer[][] moltomPit= new Integer[1][2];
+            moltomPit[0][0]=moltom[0][0];
+            moltomPit[0][1]=moltom[0][1];
+            for (int j = 0; j < 20; j++) {
+                for (int i = 0; i < moltom.length-1; i++) {
+                    if (moltom[i][1]<moltom[i+1][1]) {
+                        
+                        moltomPit[0][0]=moltom[i][0];
+                        moltomPit[0][1]=moltom[i][1];
+                        
+                        moltom[i][0]=moltom[i+1][0];
+                        moltom[i][1]=moltom[i+1][1];
+                        
+                        moltom[i+1][0]=moltomPit[0][0];
+                        moltom[i+1][1]=moltomPit[0][1];
                     }
-
-                }
             }
-            //PROBLÉMA:
-            // 1. nem megfelelően működik a program, nem állítja sorrendbe a tömbadatokat
-            // 2. mit kezdjek a sok null értékkel a tömbjeimben, hogyan tudom esetleg úgy létrehozni, kezelni őket, hogy ne legyen benne ennyi fölösleges null?
-            //Próba kiírás
-            for (int i = 0; i < rendMolTom.length; i++) {
-                System.out.println(rendMolTom[i][0]+" "+rendMolTom[i][1]);
+            }
+            
+            for (int i = 0; i < moltom.length; i++) {
+                System.out.println (betuk[(moltom[i][0])][0]+" "+moltom[i][1]);
             }
 
             FileWriter buta2 = new FileWriter("eredmeny.txt");
             PrintWriter okos2 = new PrintWriter(buta2);
+            okos2.println("--Harmadik feladat--");
+            for (int i = 0; i < moltom.length; i++) {
+            okos2.println(betuk[(moltom[i][0])][0]+" "+moltom[i][1]);
+            }
 
-            okos.close();
+            okos2.close();
         } catch (FileNotFoundException ex) {
             System.out.println("Nem találhetó a file!");
         } catch (IOException ex) {
