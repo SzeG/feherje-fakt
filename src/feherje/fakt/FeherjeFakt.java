@@ -68,43 +68,67 @@ public class FeherjeFakt {
                 if (szamok[i][0] == null) {
                     break;
                 }
-                moltom[i][0]=i;
+                moltom[i][0] = i;
                 moltom[i][1] = ((12 * szamok[i][0]) + (1 * szamok[i][1]) + (16 * szamok[i][2]) + (14 * szamok[i][3]) + (32 * szamok[i][4]));
             }
 
             //--Harmadik feladat--
             System.out.println("--Harmadik feladat--");
-            Integer[][] moltomPit= new Integer[1][2];
-            moltomPit[0][0]=moltom[0][0];
-            moltomPit[0][1]=moltom[0][1];
+            Integer[][] moltomPit = new Integer[1][2];
+            moltomPit[0][0] = moltom[0][0];
+            moltomPit[0][1] = moltom[0][1];
             for (int j = 0; j < 20; j++) {
-                for (int i = 0; i < moltom.length-1; i++) {
-                    if (moltom[i][1]<moltom[i+1][1]) {
-                        
-                        moltomPit[0][0]=moltom[i][0];
-                        moltomPit[0][1]=moltom[i][1];
-                        
-                        moltom[i][0]=moltom[i+1][0];
-                        moltom[i][1]=moltom[i+1][1];
-                        
-                        moltom[i+1][0]=moltomPit[0][0];
-                        moltom[i+1][1]=moltomPit[0][1];
+                for (int i = 0; i < moltom.length - 1; i++) {
+                    if (moltom[i][1] < moltom[i + 1][1]) {
+
+                        moltomPit[0][0] = moltom[i][0];
+                        moltomPit[0][1] = moltom[i][1];
+
+                        moltom[i][0] = moltom[i + 1][0];
+                        moltom[i][1] = moltom[i + 1][1];
+
+                        moltom[i + 1][0] = moltomPit[0][0];
+                        moltom[i + 1][1] = moltomPit[0][1];
                     }
+                }
             }
-            }
-            
+
             for (int i = 0; i < moltom.length; i++) {
-                System.out.println (betuk[(moltom[i][0])][0]+" "+moltom[i][1]);
+                System.out.println(betuk[(moltom[i][0])][0] + " " + moltom[i][1]);
             }
 
             FileWriter buta2 = new FileWriter("eredmeny.txt");
             PrintWriter okos2 = new PrintWriter(buta2);
             okos2.println("--Harmadik feladat--");
             for (int i = 0; i < moltom.length; i++) {
-            okos2.println(betuk[(moltom[i][0])][0]+" "+moltom[i][1]);
+                okos2.println(betuk[(moltom[i][0])][0] + " " + moltom[i][1]);
             }
-
             okos2.close();
+
+            System.out.println("---Negyedik feladat---");
+            FileReader buta3 = new FileReader("bsa.txt");
+            BufferedReader okos3 = new BufferedReader(buta3);
+            String feh = "";
+            Integer[] osszegKeplet = new Integer[1000];
+            //a bsa.txt fájlon végimenő ciklus
+            for (int i = 0; i < 1000; i++) {
+                if (feh==null) {
+                    break;
+                }
+                feh=okos3.readLine();
+                for (int j = 0; j < 19; j++) {
+                    //megkeresi a kiolvesott betűt a táblázatban, és a hozzárendelt számokat összeadja, majd beírja az osszegKeplet tömb aktuális helyére
+                    if (feh==betuk[j][1]) {
+                        osszegKeplet[i]=(szamok[j][0]+szamok[j][1]+szamok[j][2]+szamok[j][3]+szamok[j][4]);
+                    }
+                }
+            }
+            //próba tömb kiíró
+            //PROBLÉMA: a tömb értékei kivétel nélkül NULL
+            for (int i = 0; i < 1000; i++) {
+                System.out.println(osszegKeplet[i]);
+            }
+            
         } catch (FileNotFoundException ex) {
             System.out.println("Nem találhetó a file!");
         } catch (IOException ex) {
