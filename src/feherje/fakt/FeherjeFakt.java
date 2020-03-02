@@ -105,7 +105,7 @@ public class FeherjeFakt {
             }
             okos2.close();
 
-            System.out.println("---Negyedik feladat---");
+            System.out.println("---Negyedik feladat---");        
             FileReader buta3 = new FileReader("bsa.txt");
             BufferedReader okos3 = new BufferedReader(buta3);
             String feh = "";
@@ -115,8 +115,9 @@ public class FeherjeFakt {
                 if (feh==null) {
                     break;
                 }
+                
                 feh=okos3.readLine();
-                for (int j = 0; j < 19; j++) {
+                for (int j = 0; j < 20; j++) {
                     //megkeresi a kiolvesott betűt a táblázatban, és a hozzárendelt számokat összeadja, majd beírja az osszegKeplet tömb aktuális helyére
                     if (feh==betuk[j][1]) {
                         osszegKeplet[i]=(szamok[j][0]+szamok[j][1]+szamok[j][2]+szamok[j][3]+szamok[j][4]);
