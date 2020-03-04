@@ -38,8 +38,9 @@ public class FeherjeFakt {
                     ideiglenes = okos.readLine();
 
                     hetes[i][j] = ideiglenes;
-
+                   
                 }
+             
             }
 
             for (int i = 0; i < hetes.length; i++) {
@@ -103,33 +104,53 @@ public class FeherjeFakt {
             for (int i = 0; i < moltom.length; i++) {
                 okos2.println(betuk[(moltom[i][0])][0] + " " + moltom[i][1]);
             }
-            okos2.close();
+            
 
             System.out.println("---Negyedik feladat---");        
             FileReader buta3 = new FileReader("bsa.txt");
             BufferedReader okos3 = new BufferedReader(buta3);
             String feh = "";
-            Integer[] osszegKeplet = new Integer[1000];
+            Integer[] osszegKeplet = new Integer[5];
+            osszegKeplet[0]=0;
+            osszegKeplet[1]=0;
+            osszegKeplet[2]=0;
+            osszegKeplet[3]=0;
+            osszegKeplet[4]=0;
+            Integer bsaHossz=0;
             //a bsa.txt fájlon végimenő ciklus
             for (int i = 0; i < 1000; i++) {
+                feh=okos3.readLine();
                 if (feh==null) {
                     break;
                 }
-                
-                feh=okos3.readLine();
+                bsaHossz++;
+              
+               
+               
+               
                 for (int j = 0; j < 20; j++) {
                     //megkeresi a kiolvesott betűt a táblázatban, és a hozzárendelt számokat összeadja, majd beírja az osszegKeplet tömb aktuális helyére
-                    if (feh==betuk[j][1]) {
-                        osszegKeplet[i]=(szamok[j][0]+szamok[j][1]+szamok[j][2]+szamok[j][3]+szamok[j][4]);
+                    if (feh.equals(betuk[j][1])) {
+                        
+                        osszegKeplet[0]=osszegKeplet[0]+szamok[j][0];
+                        osszegKeplet[1]=osszegKeplet[1]+szamok[j][1];
+                        osszegKeplet[2]=osszegKeplet[2]+szamok[j][2];
+                        osszegKeplet[3]=osszegKeplet[3]+szamok[j][3];
+                        osszegKeplet[4]=osszegKeplet[4]+szamok[j][4];
                     }
                 }
             }
-            //próba tömb kiíró
-            //PROBLÉMA: a tömb értékei kivétel nélkül NULL
-            for (int i = 0; i < 1000; i++) {
-                System.out.println(osszegKeplet[i]);
-            }
+            //-H2O*(bsaHossz-1)
+            //H
+            osszegKeplet[1]=osszegKeplet[1]-2*(bsaHossz-1);
+            //O
+            osszegKeplet[2]=osszegKeplet[2]-(bsaHossz-1);
             
+            System.out.println("C "+osszegKeplet[0]+" H "+osszegKeplet[1]+" O "+osszegKeplet[2]+" N "+osszegKeplet[3]+" S "+osszegKeplet[4]);
+            okos2.println("---Negyedik feladat---");
+            okos2.println("C "+osszegKeplet[0]+" H "+osszegKeplet[1]+" O "+osszegKeplet[2]+" N "+osszegKeplet[3]+" S "+osszegKeplet[4]);
+            okos2.close();
+        
         } catch (FileNotFoundException ex) {
             System.out.println("Nem találhetó a file!");
         } catch (IOException ex) {

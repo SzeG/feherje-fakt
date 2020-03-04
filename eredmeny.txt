@@ -19,3 +19,5 @@ Pro 115
 Ser 105
 Ala 89
 Gly 75
+---Negyedik feladat---
+C 2923 H 4594 O 895 N 778 S 39
