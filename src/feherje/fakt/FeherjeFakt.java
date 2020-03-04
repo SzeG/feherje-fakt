@@ -158,21 +158,7 @@ public class FeherjeFakt {
             Integer bsaVege=0;
             Integer utolsoVeg=-1;
             for (int i = 0; i < bsaHossz; i++) {
-                if (bsa[i].equals("Y")) {
-                    bsaLeghosszabb=(i-utolsoVeg);
-                    bsaKezdete=utolsoVeg+1;
-                    bsaVege=i;
-                    utolsoVeg=i;
-                    
-                }
-                if (bsa[i].equals("W")) {
-                    bsaLeghosszabb=(i-utolsoVeg);
-                    bsaKezdete=utolsoVeg+1;
-                    bsaVege=i;
-                    utolsoVeg=i;
-                    
-                }
-                if (bsa[i].equals("F")) {
+                if (bsa[i].equals("Y")||bsa[i].equals("W")||bsa[i].equals("F")) {
                     bsaLeghosszabb=(i-utolsoVeg);
                     bsaKezdete=utolsoVeg+1;
                     bsaVege=i;
@@ -190,6 +176,17 @@ public class FeherjeFakt {
             okos2.close();
             
             System.out.println("---Hatodik feladat---");
+            Integer ciszteinSzam=0;
+            for (int i = 0; i < bsaHossz; i++) {
+                if (bsa[i].equals("R")&& (bsa[i+1].equals("A")||bsa[i+1].equals("V"))) {
+                    for (int j = 0; j < i; j++) {
+                        if (bsa[j].equals("C")) {
+                            ciszteinSzam++;
+                        }
+                    }
+                }
+            }
+            System.out.println("A Factor XI hasítása során keletkező első fehérjelánc részletben "+ciszteinSzam+"db Cisztein aminosav található.");
             
         
         } catch (FileNotFoundException ex) {
