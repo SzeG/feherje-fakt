@@ -117,12 +117,14 @@ public class FeherjeFakt {
             osszegKeplet[3]=0;
             osszegKeplet[4]=0;
             Integer bsaHossz=0;
+            String[] bsa= new String[1000];
             //a bsa.txt fájlon végimenő ciklus
             for (int i = 0; i < 1000; i++) {
                 feh=okos3.readLine();
                 if (feh==null) {
                     break;
                 }
+                bsa[i]=feh;
                 bsaHossz++;
               
                
@@ -149,7 +151,46 @@ public class FeherjeFakt {
             System.out.println("C "+osszegKeplet[0]+" H "+osszegKeplet[1]+" O "+osszegKeplet[2]+" N "+osszegKeplet[3]+" S "+osszegKeplet[4]);
             okos2.println("---Negyedik feladat---");
             okos2.println("C "+osszegKeplet[0]+" H "+osszegKeplet[1]+" O "+osszegKeplet[2]+" N "+osszegKeplet[3]+" S "+osszegKeplet[4]);
+            
+            System.out.println("---Ötödik feladat---");
+            Integer bsaLeghosszabb=0;
+            Integer bsaKezdete=0;
+            Integer bsaVege=0;
+            Integer utolsoVeg=-1;
+            for (int i = 0; i < bsaHossz; i++) {
+                if (bsa[i].equals("Y")) {
+                    bsaLeghosszabb=(i-utolsoVeg);
+                    bsaKezdete=utolsoVeg+1;
+                    bsaVege=i;
+                    utolsoVeg=i;
+                    
+                }
+                if (bsa[i].equals("W")) {
+                    bsaLeghosszabb=(i-utolsoVeg);
+                    bsaKezdete=utolsoVeg+1;
+                    bsaVege=i;
+                    utolsoVeg=i;
+                    
+                }
+                if (bsa[i].equals("F")) {
+                    bsaLeghosszabb=(i-utolsoVeg);
+                    bsaKezdete=utolsoVeg+1;
+                    bsaVege=i;
+                    utolsoVeg=i;
+                    
+                }
+            }
+            System.out.println("A kezdet helye: "+bsaKezdete);
+            System.out.println("A legosszabb fehérjelánc aminosavainak száma: "+bsaLeghosszabb);
+            System.out.println("A vég helye: "+bsaVege);
+            okos2.println("---Ötödik feladat---");
+            okos2.println("A kezdet helye: "+bsaKezdete);
+            okos2.println("A legosszabb fehérjelánc aminosavainak száma: "+bsaLeghosszabb);
+            okos2.println("A vég helye: "+bsaVege);
             okos2.close();
+            
+            System.out.println("---Hatodik feladat---");
+            
         
         } catch (FileNotFoundException ex) {
             System.out.println("Nem találhetó a file!");

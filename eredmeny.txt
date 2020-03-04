@@ -21,3 +21,7 @@ Ala 89
 Gly 75
 ---Negyedik feladat---
 C 2923 H 4594 O 895 N 778 S 39
+---Ötödik feladat---
+A kezdet helye: 551
+A legosszabb fehérjelánc aminosavainak száma: 14
+A vég helye: 564
